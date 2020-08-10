@@ -1,45 +1,41 @@
 // CIT125 Intro to C++ Luigi Robles
 // 08-09-2020 Summer Term
-// Final Script 1 do...while loop
-// Verify Correct Password, Maximum
-// of 3 attempts
+// Final Script 2 program-defined value returning function
+// Calculate a total based on user's entered quantity and price
 
 #include <iostream>
+#include <iomanip>
 using namespace std;
+
+//function prototype
+double getTotal(int quantity, double price);
 
 int main()
 {
 	//declare and initialize variables
-	int failed = 0;
-	string correctPass = "password";
-	string passEntered = "";
+	int quantityOrdered = 0;
+	double cost = 0.0;
+	double subTotal = 0.0;
 
-	do //begin loop
-	{
-		//input for password 
-		cout << "Please enter your password: " << endl; 
-		cin >> passEntered;
+	cout << "Please enter the quantity ordered: ";
+	cin >> quantityOrdered; //input for amount ordered
 
-		if (passEntered != correctPass)
-		{
-			cout << "Incorrect Password" << endl;
-			failed += 1;
-		}
-		else if (passEntered == correctPass)
-		{
-			cout << "Thank you,Your are now logged in.";
-			break;
-		}
-		cout << endl;
+	cout << "Please enter the cost: ";
+	cin >> cost; //input for price of item ordered
 
-			
-	} while (failed <= 2); //end loop
+	cout << fixed << setprecision(2);
+	subTotal = getTotal(quantityOrdered, cost); //calculate total cost
+	cout << "The total is: $" << subTotal << endl; //output total cost
 
-	if (failed >= 2)
-	{
-		cout << "Sorry you reached maximum number of attempts" << endl;
-		cout << "Please see your systems administrator" << endl;
-	}
 	return 0;
 
 } // end of main function
+
+//***Function definitions
+double getTotal(int quantity, double price)
+{
+	double total = 0.0;
+
+	total = (quantity * price);
+	return total;
+} // end of getTotal function
